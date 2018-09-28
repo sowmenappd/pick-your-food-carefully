@@ -1086,7 +1086,7 @@ RectTransform:
   m_LocalScale: {x: 2.9999905, y: 2.9999905, z: 0.9999892}
   m_Children: []
   m_Father: {fileID: 1132039702}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2037,8 +2037,8 @@ RectTransform:
   m_Children:
   - {fileID: 1235498062}
   - {fileID: 1743075047}
-  - {fileID: 1533717064}
   - {fileID: 729477553}
+  - {fileID: 1533717064}
   - {fileID: 331253589}
   - {fileID: 904446434}
   m_Father: {fileID: 590033932}
@@ -2561,7 +2561,7 @@ Prefab:
     - target: {fileID: 224295465529336492, guid: 263b0db1986b82a4ea792f7fd9e2a424,
         type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 224295465529336492, guid: 263b0db1986b82a4ea792f7fd9e2a424,
         type: 2}
@@ -3042,6 +3042,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1743075047}
+  - component: {fileID: 1743075048}
   m_Layer: 5
   m_Name: Upper wall
   m_TagString: Untagged
@@ -3069,6 +3070,32 @@ RectTransform:
   m_AnchoredPosition: {x: -601, y: 444}
   m_SizeDelta: {x: -1180, y: -980}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1743075048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1743075046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78b41b949fabc4040a3735ca73f2f589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodHolder: {fileID: 1235498062}
+  spawnPoints:
+  - {fileID: 1316393378}
+  - {fileID: 88846675}
+  - {fileID: 1810148497}
+  - {fileID: 960588581}
+  - {fileID: 1647089813}
+  foodItems:
+  - {fileID: 114190479690792544, guid: d3e3f3a2dd7ee8a4f8115bc877236790, type: 2}
+  - {fileID: 114190479690792544, guid: 14b5ebc1e7e6cb54f89708f3244193f4, type: 2}
+  - {fileID: 114190479690792544, guid: 5984349510ce3704db07bfe13edadbe4, type: 2}
+  - {fileID: 114190479690792544, guid: f0e33f0d0db72e349ad2aad3c890feb5, type: 2}
+  - {fileID: 114190479690792544, guid: 66df402fb9abf3b4eb8816c0485642c8, type: 2}
+  maxSpawnDelay: 1.25
+  maxWaveBreakDelay: 3
 --- !u!1 &1810148496
 GameObject:
   m_ObjectHideFlags: 0
@@ -3112,7 +3139,6 @@ GameObject:
   - component: {fileID: 1847475508}
   - component: {fileID: 1847475510}
   - component: {fileID: 1847475509}
-  - component: {fileID: 1847475511}
   m_Layer: 5
   m_Name: target food panel
   m_TagString: Untagged
@@ -3175,24 +3201,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1847475507}
   m_CullTransparentMesh: 0
---- !u!114 &1847475511
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1847475507}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5d2f70f69e221f49874577695271388, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawner: {fileID: 0}
-  targetFoods:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  targetFoodSprites: []
-  hp: 000000000000000000000000
 --- !u!1 &1902757263
 GameObject:
   m_ObjectHideFlags: 0
