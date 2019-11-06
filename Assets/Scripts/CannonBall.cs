@@ -18,6 +18,7 @@ public class CannonBall : MonoBehaviour {
   }
 
   void OnCollisionEnter2D (Collision2D col) {
+    if(GameManager.Instance.Paused) return;
     if (!touchedGround) {
       if (col.collider.tag == "Player") {
         if (col.collider.GetComponent<PlayerController> ().Flickering)

@@ -52,6 +52,8 @@ public class PlayerController : LivingEntity, IDamageable {
   System.Action<int> OnDamage;
   private Spawner spawner;
 
+  private Vector2 onPauseVelocity;
+
   protected override void Awake () {
     //PlayerPrefs.DeleteAll();
     base.Awake ();
@@ -88,6 +90,23 @@ public class PlayerController : LivingEntity, IDamageable {
 
   void Update () {
     if (GameManager.Instance.GameOver) return;
+
+    if(GameManager.Instance.Paused) {
+      if(onPauseVelocity == Vector2.one * -1f){
+        var rb = GetComponent<Rigidbody2D>();
+        onPauseVelocity = rb.velocity;
+        rb.velocity = Vector2.zero;
+        rb.bodyType = RigidbodyType2D.Static;
+      } 
+      return;
+    } else {
+      if(onPauseVelocity != Vector2.one * -1f){
+        var rb = GetComponent<Rigidbody2D>();
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        rb.velocity = onPauseVelocity;
+        onPauseVelocity = Vector2.one * -1f;
+      }
+    }
 
     //if(spawner.Level == 1)
     //get active boss

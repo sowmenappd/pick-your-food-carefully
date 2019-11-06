@@ -53,11 +53,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\AnimationSetter.cs" />
-     <Compile Include="Assets\HandleHover.cs" />
-     <Compile Include="Assets\HiscoreDisplayActivator.cs" />
-     <Compile Include="Assets\Intro_Story.cs" />
-     <Compile Include="Assets\RandomText.cs" />
+     <Compile Include="Assets\Scripts\AnimationSetter.cs" />
      <Compile Include="Assets\Scripts\Bomb.cs" />
      <Compile Include="Assets\Scripts\BombThrower.cs" />
      <Compile Include="Assets\Scripts\Cannon.cs" />
@@ -67,17 +63,20 @@
      <Compile Include="Assets\Scripts\FinalBoss.cs" />
      <Compile Include="Assets\Scripts\Food.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\HandleHover.cs" />
      <Compile Include="Assets\Scripts\HealthUI.cs" />
+     <Compile Include="Assets\Scripts\HiscoreDisplayActivator.cs" />
      <Compile Include="Assets\Scripts\HooklegEnemy.cs" />
      <Compile Include="Assets\Scripts\IDamageable.cs" />
      <Compile Include="Assets\Scripts\IEnemy.cs" />
      <Compile Include="Assets\Scripts\Intro_Cutscene.cs" />
+     <Compile Include="Assets\Scripts\Intro_Story.cs" />
      <Compile Include="Assets\Scripts\LivingEntity.cs" />
      <Compile Include="Assets\Scripts\Loader.cs" />
      <Compile Include="Assets\Scripts\MenuController.cs" />
-     <Compile Include="Assets\Scripts\Plate.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Potion.cs" />
+     <Compile Include="Assets\Scripts\RandomText.cs" />
      <Compile Include="Assets\Scripts\ShortRangeThrower.cs" />
      <Compile Include="Assets\Scripts\Spawner.cs" />
      <Compile Include="Assets\Scripts\ThrowableBomb.cs" />

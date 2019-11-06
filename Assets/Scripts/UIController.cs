@@ -25,6 +25,8 @@ public class UIController : MonoBehaviour {
   float currentTime = 0;
 
   void Update(){
+    if(GameManager.Instance.Paused) return;
+
     if(popupPanel.activeSelf){
       currentTime += Time.deltaTime;
     }

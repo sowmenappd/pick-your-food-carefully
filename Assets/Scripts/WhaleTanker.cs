@@ -12,11 +12,9 @@ public class WhaleTanker : ShortRangeThrower {
     base.Awake ();
   }
 
-  void Start () {
-    //GetPath (0);
-  }
-
   protected override void Update () {
+    if(GameManager.Instance.Paused) return;
+
     if (start && end) {
       attacking = true;
       srenderer.enabled = true;

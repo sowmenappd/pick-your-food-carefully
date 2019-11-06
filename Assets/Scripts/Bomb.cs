@@ -28,6 +28,8 @@ public class Bomb : MonoBehaviour {
   protected const float yHitDelta = 0.8f;
   protected const float xHitDelta = 0.75f;
 
+  private Vector2 onPauseVelocity = Vector2.one * -1f;
+
   protected virtual void Awake () {
     animator = GetComponent<Animator> ();
     ccollider = GetComponent<CircleCollider2D> ();
@@ -47,6 +49,23 @@ public class Bomb : MonoBehaviour {
   }
 
   protected virtual void Update () {
+    if(GameManager.Instance.Paused) {
+      if(onPauseVelocity == Vector2.one * -1f){
+        var rb = GetComponent<Rigidbody2D>();
+        onPauseVelocity = rb.velocity;
+        rb.velocity = Vector2.zero;
+        rb.bodyType = RigidbodyType2D.Static;
+      } 
+      return;
+    } else {
+      if(onPauseVelocity != Vector2.one * -1f){
+        var rb = GetComponent<Rigidbody2D>();
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        rb.velocity = onPauseVelocity;
+        onPauseVelocity = Vector2.one * -1f;
+      }
+    }
+
     if (fuse && timer < onContactExplosionDelay) {
       timer += Time.deltaTime;
     } else if (fuse && timer >= onContactExplosionDelay) {

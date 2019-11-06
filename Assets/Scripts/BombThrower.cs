@@ -77,7 +77,7 @@ public class BombThrower : LivingEntity, IEnemy, IDamageable {
   }
 
   void Update () {
-    if (!IsAlive) return;
+    if (!IsAlive || GameManager.Instance.Paused) return;
     ClampBoundaries ();
 
     if (!jumping) {
@@ -276,6 +276,8 @@ public class BombThrower : LivingEntity, IEnemy, IDamageable {
   }
 
   void OnCollisionEnter2D (Collision2D col) {
+    if(GameManager.Instance.Paused) return;
+    
     if (col.collider.tag == "Player") {
       float pDistX = Mathf.Abs (target.transform.position.x - transform.position.x);
       float pDistY = target.transform.position.y - transform.position.y;

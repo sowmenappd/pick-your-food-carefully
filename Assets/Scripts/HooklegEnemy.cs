@@ -49,7 +49,7 @@ public class HooklegEnemy : LivingEntity, IEnemy, IDamageable {
   }
 
   void Update () {
-    if (!IsAlive) return;
+    if (!IsAlive || GameManager.Instance.Paused) return;
     ClampBoundaries ();
 
     //if the boss is out of the threshold distance to player target,

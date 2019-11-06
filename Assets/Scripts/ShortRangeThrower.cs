@@ -36,6 +36,8 @@ public class ShortRangeThrower : LivingEntity, IEnemy {
   }
 
   protected virtual void Update () {
+    if(GameManager.Instance.Paused || GameManager.Instance.GameOver) return;
+    
     if (start && end)
       attacking = true;
     else

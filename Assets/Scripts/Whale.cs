@@ -47,6 +47,8 @@ public class Whale : Bomb {
   }
 
   protected override void Update () {
+    if(GameManager.Instance.Paused) return;
+    
     if (alive) {
       timeSinceBirth += Time.deltaTime;
       if (timer < jumpMoveDelay)

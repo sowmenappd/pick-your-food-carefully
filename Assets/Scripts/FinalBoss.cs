@@ -77,7 +77,7 @@ public class FinalBoss : LivingEntity, IEnemy, IDamageable {
   }
 
   void Update () {
-    if (!IsAlive) return;
+    if (!IsAlive || GameManager.Instance.Paused) return;
     ClampBoundaries ();
 
     if (!jumping) {

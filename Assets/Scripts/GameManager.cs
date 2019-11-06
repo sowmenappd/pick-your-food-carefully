@@ -34,9 +34,13 @@ public class GameManager : MonoBehaviour {
   int score = 0;
 
   public bool GameOver {
-    get;
-    private set;
+    get; private set;
   }
+  public bool Paused {
+    get; private set;
+  }
+
+  private Transform pausePanel;
 
   public void LoadLevel (string levelName) {
     SceneManager.LoadScene (levelName);
@@ -46,6 +50,32 @@ public class GameManager : MonoBehaviour {
     Instance.GameOver = false;
     Instance.Score = 0;
     Instance.backgroundAudioSrc = GameObject.Find ("Background Audio Main").GetComponent<AudioSource> ();
+
+    pausePanel = GameObject.Find("Pause Panel").transform;
+    pausePanel.GetChild(1).GetComponent<UnityEngine.UI.Button>().onClick.AddListener( () => {
+      pausePanel.gameObject.SetActive(false);
+      GameManager.Instance.Paused = false;
+    });
+    pausePanel.GetChild(2).GetComponent<UnityEngine.UI.Button>().onClick.AddListener( () => {
+      UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
+    });
+    pausePanel.gameObject.SetActive(false);
+  }
+
+  void Update(){
+    if(!GameOver){
+      if(Input.GetKeyDown(KeyCode.Escape)){
+        Paused = !Paused;
+        if(Paused){
+          print("Paused");
+          pausePanel.gameObject.SetActive(true);
+        }
+        else{
+          print("Unpaused");
+          pausePanel.gameObject.SetActive(false);
+        }
+      }
+    }
   }
 
   public void SetGameOver () {
