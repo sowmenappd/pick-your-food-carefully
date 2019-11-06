@@ -53,5 +53,6 @@
         "temp/":true,
         "Temp/":true
     },
-    "editor.fontSize": 20
+    "editor.fontSize": 20,
+    "git.ignoreLimitWarning": true
 }

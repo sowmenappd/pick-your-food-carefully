@@ -5,49 +5,81 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
-#region Singleton
-	private static GameManager instance;
-	new private static GameObject gameObject;
+  #region Singleton
+  private static GameManager instance;
+  new private static GameObject gameObject;
 
-	public static GameManager Instance{
-		get{ 
-			if(instance == null){
-				gameObject = new GameObject("GameManager");
-				instance = gameObject.AddComponent<GameManager>();
-				gameObject.transform.SetSiblingIndex(0);
-				print("GM instantiated");
-			}
-			return instance;
-		}
-	}
+  public static GameManager Instance {
+    get {
+      if (instance == null) {
+        gameObject = new GameObject ("GameManager");
+        instance = gameObject.AddComponent<GameManager> ();
+        gameObject.transform.SetSiblingIndex (0);
+        print ("GM instantiated");
+      }
+      return instance;
+    }
+  }
 
-#endregion
+  #endregion
+  AudioSource backgroundAudioSrc;
 
-	public bool GameOver{
-		get; 
-		private set;
-	}
+  public int Score {
+    get { return score; }
+    set {
+      score = value;
+      FindObjectOfType<UIController> ().SetScore (Score);
+    }
+  }
+  int score = 0;
 
-	public int Difficulty{
-		get;
-		private set;
-	}
+  public bool GameOver {
+    get;
+    private set;
+  }
 
-	public void LoadLevel(string levelName){
-		SceneManager.LoadScene(levelName);
-	}
+  public void LoadLevel (string levelName) {
+    SceneManager.LoadScene (levelName);
+  }
 
-	public void IncreaseDifficulty(){
-		Difficulty++;
-	}
+  void Start () {
+    Instance.GameOver = false;
+    Instance.Score = 0;
+    Instance.backgroundAudioSrc = GameObject.Find ("Background Audio Main").GetComponent<AudioSource> ();
+  }
 
-	void Start(){
-		GameOver = false;
-		Difficulty = 0;
-	}
+  public void SetGameOver () {
+    Instance.GameOver = true;
+    StartCoroutine (FadeToEndingMusic ());
+    FindObjectOfType<UIController> ().ShowLoseMessage ();
+    StartCoroutine(RestartOnTime());
+  }
 
-	public void SetGameOver(){
-		GameOver = true;
-	}
+  IEnumerator RestartOnTime(){
+    while(true){
+      if(Input.GetKeyDown(KeyCode.R)){
+        break;
+      }
+      yield return null;
+    }
+    SceneManager.LoadScene("Main");
+  }
+
+  IEnumerator FadeToEndingMusic () {
+    float speed = 2f;
+
+    float volume = 0.61f;
+    while (backgroundAudioSrc.volume > 0) {
+      backgroundAudioSrc.volume = Mathf.MoveTowards (backgroundAudioSrc.volume, 0f, speed * Time.deltaTime);
+      yield return null;
+    }
+    backgroundAudioSrc.clip = FindObjectOfType<UIController> ().endingClip;
+    backgroundAudioSrc.Play();
+    backgroundAudioSrc.volume = volume;
+    // while (backgroundAudioSrc.volume < volume) {
+    //   backgroundAudioSrc.volume = Mathf.MoveTowards (backgroundAudioSrc.volume, volume, speed * Time.deltaTime);
+    //   yield return null;
+    // }
+  }
 
 }
